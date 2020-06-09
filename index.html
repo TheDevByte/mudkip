@@ -19,7 +19,8 @@
           [parseInt(document.getElementById('userInput').value)]
         ]
       ]);
-      model = await tf.loadLayersModel('http://localhost:8000/TestModel_js/model.json');
+      model = await tf.loadLayersModel(
+        'https://raw.githubusercontent.com/TheDevByte/mudkip/master/TestModel_js/model.json');
       prediction = model.predict(input);
       x = await prediction.data();
       console.log(x);
