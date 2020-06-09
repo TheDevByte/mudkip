@@ -1,0 +1,31 @@
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+</head>
+
+
+
+<body>
+
+  <input type="number" id="userInput" step="0.00000001">
+  <input type="button" value="Predict" onclick=" predict()">
+  <br>
+  <input type="text" id="output" disabled>
+  <script type="text/javascript">
+    async function predict() {
+      input = tf.tensor([
+        [
+          [parseInt(document.getElementById('userInput').value)]
+        ]
+      ]);
+      model = await tf.loadLayersModel('http://localhost:8000/TestModel_js/model.json');
+      prediction = model.predict(input);
+      x = await prediction.data();
+      console.log(x);
+      document.getElementById("output").value = x;
+    }
+  </script>
+</body>
+
+</html>
